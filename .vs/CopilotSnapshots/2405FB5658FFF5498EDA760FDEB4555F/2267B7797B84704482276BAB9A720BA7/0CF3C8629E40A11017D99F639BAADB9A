@@ -1,0 +1,14 @@
+﻿/* Fallback stub for <corecrt.h> used during bootstrap builds when UCRT headers are unavailable.
+   Minimal content to satisfy includes; not a replacement for the real header.
+*/
+#ifndef _FALLBACK_CORECRT_H
+#define _FALLBACK_CORECRT_H
+
+/* common macros */
+#ifndef NULL
+#define NULL 0
+#endif
+
+typedef unsigned long size_t;
+
+#endif /* _FALLBACK_CORECRT_H */

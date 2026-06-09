@@ -1,0 +1,61 @@
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
+using Microsoft.Win32.SafeHandles;
+using System.ComponentModel;
+
+namespace Wrapper111.Gui
+{
+    public partial class MainWindow : Window
+    {
+        DriverClient _client = new DriverClient();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bool enable = WatermarkCheck.IsChecked == true;
+            if (_client.TrySetWatermark(enable, out int err, out string errMsg))
+            {
+                StatusText.Text = "Applied";
+            }
+            else
+            {
+                StatusText.Text = $"Failed to apply: {errMsg} (0x{err:X})";
+            }
+        }
+
+        private void GenLogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Emulate creating log in game folder
+            string gameDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // placeholder
+            string fileName = $"log_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string path = Path.Combine(gameDir, fileName);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Game: TestGame v1.0");
+            sb.AppendLine("Device: Test USB Mouse");
+            sb.AppendLine("Error: Watermark not found");
+            sb.AppendLine("Driver: Wrapper111 v0.1");
+            File.WriteAllText(path, sb.ToString());
+            StatusText.Text = "Log generated: " + path;
+        }
+
+        private void GetStatusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_client.TryGetStatus(out string status, out int err2, out string errMsg2))
+            {
+                StatusText.Text = "Driver status: " + (status ?? "(empty)");
+            }
+            else
+            {
+                StatusText.Text = $"Failed to get status: {errMsg2} (0x{err2:X})";
+            }
+        }
+    }
+}

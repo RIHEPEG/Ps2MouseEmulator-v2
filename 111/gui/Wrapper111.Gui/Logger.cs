@@ -1,0 +1,54 @@
+using System;
+using System.IO;
+using System.Threading;
+
+namespace Wrapper111.Gui
+{
+    static class Logger
+    {
+        static readonly object _lock = new object();
+        static readonly string _logPath;
+        public static string LogPath => _logPath;
+
+        static Logger()
+        {
+            try
+            {
+                var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Wrapper111");
+                Directory.CreateDirectory(dir);
+                _logPath = Path.Combine(dir, "wrapper111.log");
+            }
+            catch
+            {
+                _logPath = null;
+            }
+        }
+
+        public static void LogInfo(string msg)
+        {
+            Write("INFO", msg);
+        }
+
+        public static void LogError(string msg)
+        {
+            Write("ERR ", msg);
+        }
+
+        static void Write(string level, string msg)
+        {
+            try
+            {
+                var line = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} [{level}] {msg}{Environment.NewLine}";
+                if (string.IsNullOrEmpty(_logPath)) return;
+                lock (_lock)
+                {
+                    File.AppendAllText(_logPath, line);
+                }
+            }
+            catch
+            {
+                // best-effort
+            }
+        }
+    }
+}

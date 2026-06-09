@@ -1,0 +1,95 @@
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows;
+using Microsoft.Win32.SafeHandles;
+using System.ComponentModel;
+
+namespace Wrapper111.Gui
+{
+    public partial class MainWindow : Window
+    {
+        const uint FILE_DEVICE_UNKNOWN = 0x00000022;
+        const uint IOCTL_SET_WATERMARK = (FILE_DEVICE_UNKNOWN << 16) | (0x800 << 2) | 0 | (0);
+        const uint IOCTL_GET_STATUS = (FILE_DEVICE_UNKNOWN << 16) | (0x801 << 2) | 2 | (0);
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        static extern SafeFileHandle CreateFile(string lpFileName, uint dwDesiredAccess, uint dwShareMode,
+            IntPtr lpSecurityAttributes, uint dwCreationDisposition, uint dwFlagsAndAttributes, IntPtr hTemplateFile);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool DeviceIoControl(SafeFileHandle hDevice, uint dwIoControlCode,
+            IntPtr lpInBuffer, uint nInBufferSize, IntPtr lpOutBuffer, uint nOutBufferSize,
+            out uint lpBytesReturned, IntPtr lpOverlapped);
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bool enable = WatermarkCheck.IsChecked == true;
+            try
+            {
+                using (var handle = CreateFile("\\\\.\\Wrapper111", 0xC0000000, 0, IntPtr.Zero, 3, 0, IntPtr.Zero))
+                {
+                    if (handle.IsInvalid) { StatusText.Text = "Driver device not found"; return; }
+                    IntPtr buf = Marshal.AllocHGlobal(4);
+                    Marshal.WriteInt32(buf, enable ? 1 : 0);
+                    bool ok = DeviceIoControl(handle, IOCTL_SET_WATERMARK, buf, 4, IntPtr.Zero, 0, out uint ret, IntPtr.Zero);
+                    Marshal.FreeHGlobal(buf);
+                    StatusText.Text = ok ? "Applied" : "Failed to apply";
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusText.Text = ex.Message;
+            }
+        }
+
+        private void GenLogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Emulate creating log in game folder
+            string gameDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // placeholder
+            string fileName = $"log_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string path = Path.Combine(gameDir, fileName);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Game: TestGame v1.0");
+            sb.AppendLine("Device: Test USB Mouse");
+            sb.AppendLine("Error: Watermark not found");
+            sb.AppendLine("Driver: Wrapper111 v0.1");
+            File.WriteAllText(path, sb.ToString());
+            StatusText.Text = "Log generated: " + path;
+        }
+
+        private void GetStatusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var handle = CreateFile("\\.\\Wrapper111", 0x80000000, 0, IntPtr.Zero, 3, 0, IntPtr.Zero))
+                {
+                    if (handle.IsInvalid) { StatusText.Text = "Driver device not found"; return; }
+                    IntPtr outBuf = Marshal.AllocHGlobal(256);
+                    bool ok = DeviceIoControl(handle, IOCTL_GET_STATUS, IntPtr.Zero, 0, outBuf, 256, out uint ret, IntPtr.Zero);
+                    if (ok && ret > 0)
+                    {
+                        string s = Marshal.PtrToStringAnsi(outBuf, (int)ret);
+                        StatusText.Text = "Driver status: " + s;
+                    }
+                    else
+                    {
+                        StatusText.Text = "Failed to get status";
+                    }
+                    Marshal.FreeHGlobal(outBuf);
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusText.Text = ex.Message;
+            }
+        }
+    }
+}

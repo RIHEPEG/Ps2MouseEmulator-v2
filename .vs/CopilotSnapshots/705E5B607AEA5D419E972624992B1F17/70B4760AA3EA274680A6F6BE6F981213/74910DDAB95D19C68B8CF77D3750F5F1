@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ShowWatermark" xml:space="preserve"><value>Показывать водяной знак</value></data>
+  <data name="Apply" xml:space="preserve"><value>Применить</value></data>
+  <data name="GetStatus" xml:space="preserve"><value>Получить статус</value></data>
+  <data name="GenerateTestLog" xml:space="preserve"><value>Создать тестовый лог</value></data>
+  <data name="OpenLog" xml:space="preserve"><value>Открыть лог</value></data>
+  <data name="DriverStatusPrefix" xml:space="preserve"><value>Статус драйвера: </value></data>
+  <data name="Applied" xml:space="preserve"><value>Применено</value></data>
+  <data name="FailedToApplyFormat" xml:space="preserve"><value>Не удалось применить: {0} (0x{1:X})</value></data>
+  <data name="FailedToGetStatusFormat" xml:space="preserve"><value>Не удалось получить статус: {0} (0x{1:X})</value></data>
+  <data name="LogGenerated" xml:space="preserve"><value>Лог создан: {0}</value></data>
+  <data name="AppRequiresAdminMessage" xml:space="preserve"><value>Приложению требуются права администратора. Перезапустить с повышенными правами?</value></data>
+  <data name="AppRequiresAdminTitle" xml:space="preserve"><value>Требуются права</value></data>
+  <data name="RestartAdminFailed" xml:space="preserve"><value>Не удалось перезапустить с повышенными правами: {0}</value></data>
+  <data name="LogNotFound" xml:space="preserve"><value>Файл лога не найден</value></data>
+  <data name="OpenLogError" xml:space="preserve"><value>Не удалось открыть лог: {0}</value></data>
+  <data name="UserGeneratedTestLog" xml:space="preserve"><value>Пользователь создал тестовый лог: {0}</value></data>
+</root>

@@ -1,0 +1,143 @@
+using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using Microsoft.Win32.SafeHandles;
+using System.ComponentModel;
+
+namespace Wrapper111.Gui
+{
+    public partial class MainWindow : Window
+    {
+        IDriverClient _client;
+
+        public MainWindow() : this(new DriverClient()) { }
+
+        // Для тестирования можно передать мок-реализацию
+        public MainWindow(IDriverClient client)
+        {
+            _client = client;
+            InitializeComponent();
+            var vm = new MainWindowViewModel(_client);
+            // Load saved setting
+            try { vm.ShowWatermark = SettingsManager.LoadWatermarkEnabled(); } catch { }
+            this.DataContext = vm;
+            // Set localized control captions
+            try
+            {
+                WatermarkCheck.Content = ResourcesHelper.Get("ShowWatermark");
+                ApplyBtn.Content = ResourcesHelper.Get("Apply");
+                GetStatusBtn.Content = ResourcesHelper.Get("GetStatus");
+                GenLogBtn.Content = ResourcesHelper.Get("GenerateTestLog");
+                OpenLogBtn.Content = ResourcesHelper.Get("OpenLog");
+            }
+            catch { }
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            try
+            {
+                if (this.DataContext is MainWindowViewModel vm)
+                {
+                    SettingsManager.SaveWatermarkEnabled(vm.ShowWatermark);
+                }
+            }
+            catch { }
+        }
+
+        private async void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bool enable = WatermarkCheck.IsChecked == true;
+            ApplyBtn.IsEnabled = false;
+            try
+            {
+                var res = await Task.Run(() =>
+                {
+                    bool ok = _client.TrySetWatermark(enable, out int errCode, out string errMessage);
+                    return (ok, errCode, errMessage);
+                });
+
+                if (res.ok)
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = ResourcesHelper.Get("Applied"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = string.Format(ResourcesHelper.Get("FailedToApplyFormat"), res.errMessage, res.errCode));
+                }
+            }
+            finally
+            {
+                ApplyBtn.IsEnabled = true;
+            }
+        }
+
+        private void GenLogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Emulate creating log in game folder
+            string gameDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // placeholder
+            string fileName = $"log_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string path = Path.Combine(gameDir, fileName);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Game: TestGame v1.0");
+            sb.AppendLine("Device: Test USB Mouse");
+            sb.AppendLine("Error: Watermark not found");
+            sb.AppendLine("Driver: Wrapper111 v0.1");
+            File.WriteAllText(path, sb.ToString());
+            StatusText.Text = "Log generated: " + path;
+            Logger.LogInfo($"User generated test log: {path}");
+        }
+
+        private void OpenLogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var lp = Logger.LogPath;
+                if (string.IsNullOrEmpty(lp) || !System.IO.File.Exists(lp))
+                {
+                    MessageBox.Show("Log file not found", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    return;
+                }
+                var psi = new System.Diagnostics.ProcessStartInfo(lp) { UseShellExecute = true };
+                System.Diagnostics.Process.Start(psi);
+                Logger.LogInfo("User opened log file");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("OpenLogBtn_Click: " + ex.Message);
+                MessageBox.Show("Не удалось открыть лог: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async void GetStatusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GetStatusBtn.IsEnabled = false;
+            try
+            {
+                var res = await Task.Run(() =>
+                {
+                    bool ok = _client.TryGetStatus(out string status, out int errCode, out string errMessage);
+                    return (ok, status, errCode, errMessage);
+                });
+
+                if (res.ok)
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = ResourcesHelper.Get("DriverStatusPrefix") + (res.status ?? "(empty)"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = string.Format(ResourcesHelper.Get("FailedToGetStatusFormat"), res.errMessage, res.errCode));
+                }
+            }
+            finally
+            {
+                GetStatusBtn.IsEnabled = true;
+            }
+        }
+    }
+}

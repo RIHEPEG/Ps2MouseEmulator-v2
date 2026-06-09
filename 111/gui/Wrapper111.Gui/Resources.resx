@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value></resheader>
+  <data name="ShowWatermark" xml:space="preserve"><value>Show watermark</value></data>
+  <data name="Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="GetStatus" xml:space="preserve"><value>Get status</value></data>
+  <data name="GenerateTestLog" xml:space="preserve"><value>Generate test log</value></data>
+  <data name="OpenLog" xml:space="preserve"><value>Open log</value></data>
+  <data name="DriverStatusPrefix" xml:space="preserve"><value>Driver status: </value></data>
+  <data name="Applied" xml:space="preserve"><value>Applied</value></data>
+  <data name="FailedToApplyFormat" xml:space="preserve"><value>Failed to apply: {0} (0x{1:X})</value></data>
+  <data name="FailedToGetStatusFormat" xml:space="preserve"><value>Failed to get status: {0} (0x{1:X})</value></data>
+  <data name="LogGenerated" xml:space="preserve"><value>Log generated: {0}</value></data>
+  <data name="AppRequiresAdminMessage" xml:space="preserve"><value>The application requires administrator privileges. Restart elevated?</value></data>
+  <data name="AppRequiresAdminTitle" xml:space="preserve"><value>Administrator required</value></data>
+  <data name="RestartAdminFailed" xml:space="preserve"><value>Failed to restart elevated: {0}</value></data>
+  <data name="LogNotFound" xml:space="preserve"><value>Log file not found</value></data>
+  <data name="OpenLogError" xml:space="preserve"><value>Failed to open log: {0}</value></data>
+  <data name="UserGeneratedTestLog" xml:space="preserve"><value>User generated test log: {0}</value></data>
+</root>

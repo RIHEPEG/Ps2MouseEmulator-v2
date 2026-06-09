@@ -1,0 +1,24 @@
+﻿/* Fallback stub of <crtdbg.h> for bootstrap builds when CRT include paths are missing.
+   Minimal definitions to satisfy includes; not a replacement for the real header.
+*/
+#ifndef _FALLBACK_CRTDBG_H
+#define _FALLBACK_CRTDBG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Debug report types */
+#define _CRTDBG_REPORT_ERROR 0
+#define _CRTDBG_REPORT_WARN  1
+#define _CRTDBG_REPORT_INFO  2
+
+/* Debug flag setter stub */
+static inline int _CrtSetDbgFlag(int _Flag) { (void)_Flag; return 0; }
+static inline int _CrtDbgReport(int _ReportType, const char* _File, int _Line, const char* _Module, const char* _Format, ...) { (void)_ReportType; (void)_File; (void)_Line; (void)_Module; (void)_Format; return 0; }
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* _FALLBACK_CRTDBG_H */

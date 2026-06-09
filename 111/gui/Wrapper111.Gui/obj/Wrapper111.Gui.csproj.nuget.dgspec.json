@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj": {}
+  },
+  "projects": {
+    "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+        "projectName": "Wrapper111.Gui",
+        "projectPath": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+        "packagesPath": "C:\\Users\\nikita\\.nuget\\packages\\",
+        "outputPath": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\nikita\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.428\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

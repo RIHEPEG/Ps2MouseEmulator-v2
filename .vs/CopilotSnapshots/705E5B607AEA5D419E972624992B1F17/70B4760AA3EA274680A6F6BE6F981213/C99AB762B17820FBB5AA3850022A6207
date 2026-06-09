@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+	<TargetFramework>net48</TargetFramework>
+	<UseWPF>true</UseWPF>
+	<AssemblyName>Wrapper111.Gui</AssemblyName>
+	<RootNamespace>Wrapper111.Gui</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+	<Reference Include="System.Core" />
+  </ItemGroup>
+</Project>

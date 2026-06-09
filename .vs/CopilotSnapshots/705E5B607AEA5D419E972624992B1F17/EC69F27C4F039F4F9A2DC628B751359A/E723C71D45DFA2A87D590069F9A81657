@@ -1,0 +1,8 @@
+﻿<Project>
+  <!-- Локальный override: для проекта с именем 111 устанавливаем PlatformToolset=v143,
+	   чтобы обойти требование Spectre-модифицированных библиотек при сборке без WDK.
+	   Это временное решение; правильнее установить компоненты через Visual Studio Installer. -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == '111'">
+	<PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+</Project>

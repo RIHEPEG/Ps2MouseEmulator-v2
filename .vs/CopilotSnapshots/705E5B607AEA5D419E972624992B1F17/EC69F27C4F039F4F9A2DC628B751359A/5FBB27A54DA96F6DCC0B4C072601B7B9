@@ -1,0 +1,14 @@
+﻿<Window x:Class="Wrapper111.Gui.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Wrapper111" Height="200" Width="400">
+	<Grid Margin="10">
+		<StackPanel>
+			<CheckBox x:Name="WatermarkCheck" Content="Show watermark" Margin="0,0,0,10" />
+			<Button x:Name="ApplyBtn" Content="Apply" Width="100" Click="ApplyBtn_Click" />
+			<Button x:Name="GetStatusBtn" Content="Get status" Width="100" Margin="5,0,0,0" Click="GetStatusBtn_Click" />
+			<Button x:Name="GenLogBtn" Content="Generate test log" Width="150" Margin="0,10,0,0" Click="GenLogBtn_Click" />
+			<TextBlock x:Name="StatusText" Margin="0,10,0,0" />
+		</StackPanel>
+	</Grid>
+</Window>

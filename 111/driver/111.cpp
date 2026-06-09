@@ -1,0 +1,140 @@
+// Minimal WDM driver skeleton for Wrapper111
+// Если WDK/ntddk.h доступен, подключаем реальную реализацию.
+// Иначе — подключаем легковесный стааб для успешной компиляции в среде без WDK.
+
+#if defined(__has_include)
+#  if __has_include(<ntddk.h>)
+#    include <ntddk.h>
+
+#    define DEVICE_NAME L"\\Device\\Wrapper111"
+#    define SYMBOLIC_NAME L"\\DosDevices\\Wrapper111"
+
+#    define IOCTL_SET_WATERMARK CTL_CODE(FILE_DEVICE_UNKNOWN, 0x800, METHOD_BUFFERED, FILE_ANY_ACCESS)
+#    define IOCTL_GET_STATUS    CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED, FILE_ANY_ACCESS)
+
+	BOOLEAN g_WatermarkEnabled = FALSE;
+
+	VOID DriverUnload(_In_ PDRIVER_OBJECT DriverObject)
+	{
+		UNICODE_STRING symName;
+		RtlInitUnicodeString(&symName, SYMBOLIC_NAME);
+		IoDeleteSymbolicLink(&symName);
+
+		if (DriverObject->DeviceObject) {
+			IoDeleteDevice(DriverObject->DeviceObject);
+		}
+
+		DbgPrint("Wrapper111: DriverUnload called\n");
+	}
+
+	NTSTATUS DispatchCreateClose(_In_ PDEVICE_OBJECT DeviceObject, _In_ PIRP Irp)
+	{
+		UNREFERENCED_PARAMETER(DeviceObject);
+		Irp->IoStatus.Status = STATUS_SUCCESS;
+		Irp->IoStatus.Information = 0;
+		IoCompleteRequest(Irp, IO_NO_INCREMENT);
+		return STATUS_SUCCESS;
+	}
+
+	NTSTATUS DispatchDeviceControl(_In_ PDEVICE_OBJECT DeviceObject, _In_ PIRP Irp)
+	{
+		UNREFERENCED_PARAMETER(DeviceObject);
+		PIO_STACK_LOCATION stack = IoGetCurrentIrpStackLocation(Irp);
+		NTSTATUS status = STATUS_INVALID_DEVICE_REQUEST;
+		ULONG info = 0;
+
+		switch (stack->Parameters.DeviceIoControl.IoControlCode) {
+		case IOCTL_SET_WATERMARK:
+		{
+			if (stack->Parameters.DeviceIoControl.InputBufferLength >= sizeof(ULONG)) {
+				ULONG value = *(ULONG*)Irp->AssociatedIrp.SystemBuffer;
+				g_WatermarkEnabled = (value != 0) ? TRUE : FALSE;
+				DbgPrint("Wrapper111: IOCTL_SET_WATERMARK = %u\n", value);
+				status = STATUS_SUCCESS;
+				info = 0;
+			}
+			else {
+				status = STATUS_BUFFER_TOO_SMALL;
+			}
+		}
+		break;
+		case IOCTL_GET_STATUS:
+		{
+			const CHAR* msg = g_WatermarkEnabled ? "Watermark=1" : "Watermark=0";
+			SIZE_T len = (strlen(msg) + 1);
+			if (stack->Parameters.DeviceIoControl.OutputBufferLength >= (ULONG)len) {
+				RtlCopyMemory(Irp->AssociatedIrp.SystemBuffer, msg, len);
+				info = (ULONG)len;
+				status = STATUS_SUCCESS;
+			}
+			else {
+				status = STATUS_BUFFER_TOO_SMALL;
+			}
+		}
+		break;
+		default:
+			status = STATUS_INVALID_DEVICE_REQUEST;
+			break;
+		}
+
+		Irp->IoStatus.Status = status;
+		Irp->IoStatus.Information = info;
+		IoCompleteRequest(Irp, IO_NO_INCREMENT);
+		return status;
+	}
+
+	extern "C"
+	NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath)
+	{
+		UNREFERENCED_PARAMETER(RegistryPath);
+		NTSTATUS status;
+		PDEVICE_OBJECT deviceObject = NULL;
+		UNICODE_STRING devName;
+		UNICODE_STRING symName;
+
+		RtlInitUnicodeString(&devName, DEVICE_NAME);
+		status = IoCreateDevice(DriverObject, 0, &devName, FILE_DEVICE_UNKNOWN, 0, FALSE, &deviceObject);
+		if (!NT_SUCCESS(status)) {
+			DbgPrint("Wrapper111: IoCreateDevice failed 0x%X\n", status);
+			return status;
+		}
+
+		RtlInitUnicodeString(&symName, SYMBOLIC_NAME);
+		status = IoCreateSymbolicLink(&symName, &devName);
+		if (!NT_SUCCESS(status)) {
+			DbgPrint("Wrapper111: IoCreateSymbolicLink failed 0x%X\n", status);
+			IoDeleteDevice(deviceObject);
+			return status;
+		}
+
+		for (int i = 0; i <= IRP_MJ_MAXIMUM_FUNCTION; ++i) {
+			DriverObject->MajorFunction[i] = DispatchCreateClose;
+		}
+
+		DriverObject->MajorFunction[IRP_MJ_CREATE] = DispatchCreateClose;
+		DriverObject->MajorFunction[IRP_MJ_CLOSE] = DispatchCreateClose;
+		DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DispatchDeviceControl;
+		DriverObject->DriverUnload = DriverUnload;
+
+		DbgPrint("Wrapper111: DriverEntry completed\n");
+		return STATUS_SUCCESS;
+	}
+#  else
+// WDK not available — provide small user-mode stub to allow проект собираться в среде без WDK.
+
+extern "C" __declspec(dllexport) long DriverEntry(void* DriverObject, void* RegistryPath)
+{
+	(void)DriverObject; (void)RegistryPath;
+	// No CRT usage here to avoid dependency on <stdio.h>/<cstdio> in kernel-mode build environment.
+	return 0;
+}
+#  endif
+#else
+// Компилятор не поддерживает __has_include — подключаем заглушку
+extern "C" __declspec(dllexport) long DriverEntry(void* DriverObject, void* RegistryPath)
+{
+	(void)DriverObject; (void)RegistryPath;
+	// No CRT usage here to avoid dependency on <stdio.h>/<cstdio> in kernel-mode build environment.
+	return 0;
+}
+#endif

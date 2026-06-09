@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "L6o5abG9fAFQ5TXeChfkwBnqRpac3zmAHIVdH8DTE+fjLc5oWDBAo6w3CfMWlkAXfXQ96XaLGPtorF3dtn3n/w==",
+  "success": true,
+  "projectFilePath": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nikita\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\nikita\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net48\\1.0.2\\microsoft.netframework.referenceassemblies.net48.1.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,57 @@
+using System;
+using System.Windows;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.Reflection;
+
+namespace Wrapper111.Gui
+{
+    public partial class App : Application
+    {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            if (!IsAdministrator())
+            {
+                var res = MessageBox.Show(ResourcesHelper.Get("AppRequiresAdminMessage"), ResourcesHelper.Get("AppRequiresAdminTitle"), MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        string exePath = Assembly.GetEntryAssembly()?.Location ?? Process.GetCurrentProcess().MainModule.FileName;
+                        var psi = new ProcessStartInfo(exePath)
+                        {
+                            UseShellExecute = true,
+                            Verb = "runas"
+                        };
+                        Process.Start(psi);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(string.Format(ResourcesHelper.Get("RestartAdminFailed"), ex.Message), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    // Завершаем текущий процесс независимо от результата перезапуска
+                    Current.Shutdown();
+                    return;
+                }
+            }
+        }
+
+        bool IsAdministrator()
+        {
+            try
+            {
+                using (var id = WindowsIdentity.GetCurrent())
+                {
+                    var principal = new WindowsPrincipal(id);
+                    return principal.IsInRole(WindowsBuiltInRole.Administrator);
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+}

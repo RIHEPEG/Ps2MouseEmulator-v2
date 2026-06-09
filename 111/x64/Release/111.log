@@ -1,0 +1,7 @@
+﻿D:\build\111\packages\Microsoft.Windows.SDK.CPP.10.0.28000.1721\build\Microsoft.Windows.SDK.cpp.targets(13,5): warning : Version of Uwp Package 10.0.28000.0 does not match TargetPlatformVersion 10.0.26100.0. Consider making the setting of TargetPlatformVersion conditional in your project file.
+  111.cpp
+  main.cpp
+  Создание кода...
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\cfloat(10,10): error C1083: Не удается открыть файл включение: float.h: No such file or directory,
+  (компиляция исходного файла "driver/main.cpp")
+  

@@ -1,0 +1,8 @@
+﻿namespace Wrapper111.Gui
+{
+    public interface IDriverClient
+    {
+        System.Threading.Tasks.Task<(bool ok, int win32Error, string errorMessage)> TrySetWatermarkAsync(bool enable, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<(bool ok, string status, int win32Error, string errorMessage)> TryGetStatusAsync(System.Threading.CancellationToken cancellationToken = default);
+    }
+}

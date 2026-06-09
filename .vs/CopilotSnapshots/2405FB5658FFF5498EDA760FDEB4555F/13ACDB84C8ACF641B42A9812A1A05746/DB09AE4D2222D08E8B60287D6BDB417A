@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <XesUwpNativeOverrideTargets>$(MSBuildThisFileDirectory)Override.$(MSBuildToolsVersion).targets</XesUwpNativeOverrideTargets>
+    <!-- add refs from this package -->
+    <!-- Only add UwpSDKOverRide entries when the variable is explicitly set to avoid clobbering system SDK paths -->
+    <SDKReferenceDirectoryRoot Condition="'$(UwpSDKOverRide)' != ''">$(UwpSDKOverRide);$(TargetPlatformSdkRootOverride);$(SDKReferenceDirectoryRoot)</SDKReferenceDirectoryRoot>
+    <SDKExtensionDirectoryRoot Condition="'$(UwpSDKOverRide)' != ''">$(UwpSDKOverRide)\Windows Kits\10;$(TargetPlatformSdkRootOverride);$(SDKExtensionDirectoryRoot)</SDKExtensionDirectoryRoot>
+  </PropertyGroup>
+
+  <!-- Ensure standard include paths are defined when not provided by environment -->
+  <PropertyGroup>
+    <WindowsSDK_IncludePath Condition="'$(WindowsSDK_IncludePath)' == ''">$(ProgramFiles(x86))\Windows Kits\10\Include\$(TargetPlatformVersion)\um;$(ProgramFiles(x86))\Windows Kits\10\Include\$(TargetPlatformVersion)\shared;$(ProgramFiles(x86))\Windows Kits\10\Include\$(TargetPlatformVersion)\ucrt</WindowsSDK_IncludePath>
+    <UniversalCRT_IncludePath Condition="'$(UniversalCRT_IncludePath)' == ''">$(ProgramFiles(x86))\Windows Kits\10\Include\$(TargetPlatformVersion)\ucrt</UniversalCRT_IncludePath>
+    <VC_IncludePath Condition="'$(VC_IncludePath)' == ''">$(VSInstallDir)VC\Tools\MSVC\$(VCToolsVersion)\include</VC_IncludePath>
+  </PropertyGroup>
+
+  <!-- Ensure the MSBuild IncludePath for the compiler contains VC and Windows SDK include dirs -->
+  <PropertyGroup>
+    <IncludePath>$(IncludePath);$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+  </PropertyGroup>
+
+  <Target Condition="'$(XeWin10TargetVersion)' != '' and '$(TargetPlatformVersion)' != '' and '$(XeWin10TargetVersion)' != '$(TargetPlatformVersion)'"
+          Name="XesUwpCheckVersion"
+          BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
+    <Warning Text="Version of Uwp Package $(XeWin10TargetVersion) does not match TargetPlatformVersion $(TargetPlatformVersion). Consider making the setting of TargetPlatformVersion conditional in your project file." />
+  </Target>
+
+  <Target Condition="'$(MSBuildToolsVersion)' &lt; '15.0'"
+          Name="XesDisplayToolsVersion"
+          BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
+    <Warning Text="MSBuild Tools Version must be 15.0 or greater to support NuGet UWP packages." />
+  </Target>
+
+  <Import Condition="Exists('$(XesUwpNativeOverrideTargets)')"
+          Project="$(XesUwpNativeOverrideTargets)" />
+
+  <!-- Ensure C/C++ compiler gets standard include directories when not provided by project -->
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+</Project>

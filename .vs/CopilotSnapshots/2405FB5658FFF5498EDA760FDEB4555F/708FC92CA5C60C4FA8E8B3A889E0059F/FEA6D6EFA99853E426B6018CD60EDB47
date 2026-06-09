@@ -1,0 +1,163 @@
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using Microsoft.Win32.SafeHandles;
+
+namespace Wrapper111.Gui
+{
+    /// <summary>
+    /// Небольшой клиент для взаимодействия с драйвером через CreateFile / DeviceIoControl.
+    /// Вынесен P/Invoke и константы для тестируемости и повторного использования.
+    /// </summary>
+    public class DriverClient : IDriverClient
+    {
+        const uint FILE_DEVICE_UNKNOWN = 0x00000022;
+        public readonly uint IOCTL_SET_WATERMARK = (FILE_DEVICE_UNKNOWN << 16) | (0x800u << 2) | 0 | (0);
+        public readonly uint IOCTL_GET_STATUS = (FILE_DEVICE_UNKNOWN << 16) | (0x801u << 2) | 2 | (0);
+
+        // Access flags
+        const uint GENERIC_READ = 0x80000000;
+        const uint GENERIC_WRITE = 0x40000000;
+        // Share modes
+        const uint FILE_SHARE_NONE = 0x0;
+        // Creation disposition
+        const uint OPEN_EXISTING = 3; // OPEN_EXISTING
+        // Buffer sizes
+        const int WATERMARK_BUFFER_SIZE = 4; // sizeof(ULONG)
+        const int STATUS_BUFFER_SIZE = 1024;
+
+        readonly string _devicePath;
+
+        public DriverClient(string devicePath = "\\\\.\\Wrapper111")
+        {
+            _devicePath = devicePath;
+        }
+
+        // Synchronous wrapper expected by legacy UI code
+        public bool TrySetWatermark(bool enable, out int win32Error, out string errorMessage)
+        {
+            var t = TrySetWatermarkAsync(enable, System.Threading.CancellationToken.None);
+            var r = t.GetAwaiter().GetResult();
+            win32Error = r.win32Error;
+            errorMessage = r.errorMessage;
+            return r.ok;
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        static extern SafeFileHandle CreateFile(string lpFileName, uint dwDesiredAccess, uint dwShareMode,
+            IntPtr lpSecurityAttributes, uint dwCreationDisposition, uint dwFlagsAndAttributes, IntPtr hTemplateFile);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool DeviceIoControl(SafeFileHandle hDevice, uint dwIoControlCode,
+            IntPtr lpInBuffer, uint nInBufferSize, IntPtr lpOutBuffer, uint nOutBufferSize,
+            out uint lpBytesReturned, IntPtr lpOverlapped);
+
+        public System.Threading.Tasks.Task<(bool ok, int win32Error, string errorMessage)> TrySetWatermark(bool enable, System.Threading.CancellationToken cancellationToken = default)
+        {
+            int win32Error = 0; string errorMessage = null;
+            try
+            {
+                using (var handle = CreateFile(_devicePath, GENERIC_READ | GENERIC_WRITE, 0, IntPtr.Zero, OPEN_EXISTING, 0, IntPtr.Zero))
+                {
+                    if (handle == null || handle.IsInvalid)
+                    {
+                        win32Error = Marshal.GetLastWin32Error();
+                        var winEx = new System.ComponentModel.Win32Exception(win32Error);
+                        errorMessage = $"Driver device not found: {winEx.Message}";
+                        Logger.LogError($"TrySetWatermark: CreateFile failed (0x{win32Error:X}) {winEx.Message}");
+                        return System.Threading.Tasks.Task.FromResult((false, win32Error, errorMessage));
+                    }
+
+                    IntPtr buf = IntPtr.Zero;
+                    try
+                    {
+                        buf = Marshal.AllocHGlobal(WATERMARK_BUFFER_SIZE);
+                        Marshal.WriteInt32(buf, enable ? 1 : 0);
+                        bool ok = DeviceIoControl(handle, IOCTL_SET_WATERMARK, buf, (uint)WATERMARK_BUFFER_SIZE, IntPtr.Zero, 0, out uint ret, IntPtr.Zero);
+                        if (!ok)
+                        {
+                            win32Error = Marshal.GetLastWin32Error();
+                            var winEx = new System.ComponentModel.Win32Exception(win32Error);
+                            errorMessage = $"DeviceIoControl failed: {winEx.Message}";
+                            Logger.LogError($"TrySetWatermark: DeviceIoControl failed (0x{win32Error:X}) {winEx.Message}");
+                            return System.Threading.Tasks.Task.FromResult((false, win32Error, errorMessage));
+                        }
+
+                        Logger.LogInfo($"TrySetWatermark: success enable={enable}");
+                        return System.Threading.Tasks.Task.FromResult((true, 0, (string)null));
+                    }
+                    finally
+                    {
+                        if (buf != IntPtr.Zero) Marshal.FreeHGlobal(buf);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                win32Error = Marshal.GetLastWin32Error();
+                errorMessage = ex.Message;
+                Logger.LogError($"TrySetWatermark: exception {ex.Message}");
+                return System.Threading.Tasks.Task.FromResult((false, win32Error, errorMessage));
+            }
+        }
+
+        public System.Threading.Tasks.Task<(bool ok, string status, int win32Error, string errorMessage)> TryGetStatus(System.Threading.CancellationToken cancellationToken = default)
+        {
+            string status = null; int win32Error = 0; string errorMessage = null;
+            try
+            {
+                using (var handle = CreateFile(_devicePath, GENERIC_READ, 0, IntPtr.Zero, OPEN_EXISTING, 0, IntPtr.Zero))
+                {
+                    if (handle == null || handle.IsInvalid)
+                    {
+                        win32Error = Marshal.GetLastWin32Error();
+                        var winEx = new System.ComponentModel.Win32Exception(win32Error);
+                        errorMessage = $"Driver device not found: {winEx.Message}";
+                        Logger.LogError($"TryGetStatus: CreateFile failed (0x{win32Error:X}) {winEx.Message}");
+                        return System.Threading.Tasks.Task.FromResult((false, (string)null, win32Error, errorMessage));
+                    }
+
+                    IntPtr outBuf = IntPtr.Zero;
+                    try
+                    {
+                        outBuf = Marshal.AllocHGlobal(STATUS_BUFFER_SIZE);
+                        bool ok = DeviceIoControl(handle, IOCTL_GET_STATUS, IntPtr.Zero, 0, outBuf, (uint)STATUS_BUFFER_SIZE, out uint ret, IntPtr.Zero);
+                        if (!ok)
+                        {
+                            win32Error = Marshal.GetLastWin32Error();
+                            var winEx = new System.ComponentModel.Win32Exception(win32Error);
+                            errorMessage = $"DeviceIoControl failed: {winEx.Message}";
+                            Logger.LogError($"TryGetStatus: DeviceIoControl failed (0x{win32Error:X}) {winEx.Message}");
+                            return System.Threading.Tasks.Task.FromResult((false, (string)null, win32Error, errorMessage));
+                        }
+
+                        if (ret == 0)
+                        {
+                            status = string.Empty;
+                            Logger.LogInfo("TryGetStatus: empty status returned");
+                            return System.Threading.Tasks.Task.FromResult((true, status, 0, (string)null));
+                        }
+
+                        var copyLen = (int)Math.Min(ret, (uint)STATUS_BUFFER_SIZE);
+                        var bytes = new byte[copyLen];
+                        Marshal.Copy(outBuf, bytes, 0, copyLen);
+                        status = Encoding.ASCII.GetString(bytes).TrimEnd('\0');
+                        Logger.LogInfo($"TryGetStatus: status='{status}'");
+                        return System.Threading.Tasks.Task.FromResult((true, status, 0, (string)null));
+                    }
+                    finally
+                    {
+                        if (outBuf != IntPtr.Zero) Marshal.FreeHGlobal(outBuf);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                win32Error = Marshal.GetLastWin32Error();
+                errorMessage = ex.Message;
+                Logger.LogError($"TryGetStatus: exception {ex.Message}");
+                return System.Threading.Tasks.Task.FromResult((false, (string)null, win32Error, errorMessage));
+            }
+        }
+    }
+}

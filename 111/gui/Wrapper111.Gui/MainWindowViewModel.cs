@@ -1,0 +1,147 @@
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Wrapper111.Gui
+{
+    public class MainWindowViewModel : INotifyPropertyChanged
+    {
+        readonly IDriverClient _client;
+        CancellationTokenSource _cts;
+
+        public MainWindowViewModel(IDriverClient client)
+        {
+            _client = client;
+            ApplyCommand = new RelayCommand(async _ => await ApplyAsync(), _ => !IsBusy);
+            GetStatusCommand = new RelayCommand(async _ => await GetStatusAsync(), _ => !IsBusy);
+            GenerateLogCommand = new RelayCommand(_ => GenerateTestLog(), _ => !IsBusy);
+            OpenLogCommand = new RelayCommand(_ => OpenLog(), _ => !IsBusy);
+        }
+
+        public RelayCommand ApplyCommand { get; }
+        public RelayCommand GetStatusCommand { get; }
+        public RelayCommand GenerateLogCommand { get; }
+        public RelayCommand OpenLogCommand { get; }
+
+        bool _showWatermark;
+        public bool ShowWatermark { get => _showWatermark; set { if (_showWatermark != value) { _showWatermark = value; OnPropertyChanged(); } } }
+
+        string _statusText;
+        public string StatusText { get => _statusText; set { _statusText = value; OnPropertyChanged(); } }
+
+        bool _isBusy;
+        public bool IsBusy { get => _isBusy; set { _isBusy = value; OnPropertyChanged(); ApplyCommand.RaiseCanExecuteChanged(); GetStatusCommand.RaiseCanExecuteChanged(); GenerateLogCommand.RaiseCanExecuteChanged(); OpenLogCommand.RaiseCanExecuteChanged(); } }
+
+        public async Task ApplyAsync()
+        {
+            IsBusy = true;
+            _cts?.Cancel();
+            _cts = new CancellationTokenSource();
+            try
+            {
+                using (var linked = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token))
+                {
+                    linked.CancelAfter(TimeSpan.FromSeconds(5));
+                    try
+                    {
+                        var (ok, winErr, errMsg) = await _client.TrySetWatermarkAsync(ShowWatermark, linked.Token);
+                        if (ok)
+                        {
+                            StatusText = ResourcesHelper.Get("Applied");
+                        }
+                        else
+                        {
+                            StatusText = string.Format(ResourcesHelper.Get("FailedToApplyFormat"), errMsg ?? "", winErr);
+                            Logger.LogError($"ApplyAsync failed: {errMsg} (0x{winErr:X})");
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        StatusText = "Operation timed out";
+                        Logger.LogError("ApplyAsync: operation timed out");
+                    }
+                }
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public async Task GetStatusAsync()
+        {
+            IsBusy = true;
+            _cts?.Cancel();
+            _cts = new CancellationTokenSource();
+            try
+            {
+                using (var linked = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token))
+                {
+                    linked.CancelAfter(TimeSpan.FromSeconds(5));
+                    try
+                    {
+                        var (ok, status, winErr, errMsg) = await _client.TryGetStatusAsync(linked.Token);
+                        if (ok)
+                        {
+                            StatusText = ResourcesHelper.Get("DriverStatusPrefix") + (status ?? "(empty)");
+                        }
+                        else
+                        {
+                            StatusText = string.Format(ResourcesHelper.Get("FailedToGetStatusFormat"), errMsg ?? "", winErr);
+                            Logger.LogError($"GetStatusAsync failed: {errMsg} (0x{winErr:X})");
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        StatusText = "Operation timed out";
+                        Logger.LogError("GetStatusAsync: operation timed out");
+                    }
+                }
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        void GenerateTestLog()
+        {
+            string gameDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string fileName = $"log_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string path = System.IO.Path.Combine(gameDir, fileName);
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Game: TestGame v1.0");
+            sb.AppendLine("Device: Test USB Mouse");
+            sb.AppendLine("Error: Watermark not found");
+            sb.AppendLine("Driver: Wrapper111 v0.1");
+            System.IO.File.WriteAllText(path, sb.ToString());
+            StatusText = string.Format(ResourcesHelper.Get("LogGenerated"), path);
+            Logger.LogInfo(string.Format(ResourcesHelper.Get("UserGeneratedTestLog"), path));
+        }
+
+        void OpenLog()
+        {
+            try
+            {
+                var lp = Logger.LogPath;
+                if (string.IsNullOrEmpty(lp) || !System.IO.File.Exists(lp))
+                {
+                    StatusText = ResourcesHelper.Get("LogNotFound");
+                    return;
+                }
+                var psi = new System.Diagnostics.ProcessStartInfo(lp) { UseShellExecute = true };
+                System.Diagnostics.Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                StatusText = string.Format(ResourcesHelper.Get("OpenLogError"), ex.Message);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
+}

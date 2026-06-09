@@ -1,0 +1,417 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\build\\111\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\18\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.51.36231\\INCLUDE\\YVALS.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\build\\111\\packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\build\\111\\x64\\Debug\\111.exe||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:x64\\Debug\\111.exe||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\README.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\README.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\RelayCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\driver\\111.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\driver\\111.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\App.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\App.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\MainWindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\build\\111\\Directory.Build.props||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Directory.Build.props||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\build\\111\\Directory.Build.targets||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Directory.Build.targets||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\DriverClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\DriverClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\Logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\SettingsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\SettingsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\IDriverClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\IDriverClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.resx||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\Resources.resx||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\driver\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\driver\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|D:\\build\\111\\111\\gui\\Wrapper111.sln||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{BE994742-BA15-6380-C80A-9F28F31FD843}|111\\111.vcxproj|solutionrelative:111\\gui\\Wrapper111.sln||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Wrapper111.sln",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.sln",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.sln",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.sln",
+              "RelativeToolTip": "111\\gui\\Wrapper111.sln",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002855|",
+              "WhenOpened": "2026-06-08T23:47:27.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "yvals.h",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\yvals.h",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\yvals.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-06-08T23:19:09.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Microsoft.Windows.SDK.cpp.targets",
+              "DocumentMoniker": "D:\\build\\111\\packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets",
+              "RelativeDocumentMoniker": "packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets",
+              "ToolTip": "D:\\build\\111\\packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets",
+              "RelativeToolTip": "packages\\Microsoft.Windows.SDK.CPP.10.0.28000.1721\\build\\Microsoft.Windows.SDK.cpp.targets",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-06-08T22:01:29.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "main.cpp",
+              "DocumentMoniker": "D:\\build\\111\\111\\driver\\main.cpp",
+              "RelativeDocumentMoniker": "111\\driver\\main.cpp",
+              "ToolTip": "D:\\build\\111\\111\\driver\\main.cpp",
+              "RelativeToolTip": "111\\driver\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-06-08T21:41:31.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "111.exe",
+              "DocumentMoniker": "D:\\build\\111\\x64\\Debug\\111.exe",
+              "RelativeDocumentMoniker": "x64\\Debug\\111.exe",
+              "ToolTip": "D:\\build\\111\\x64\\Debug\\111.exe",
+              "RelativeToolTip": "x64\\Debug\\111.exe",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000165|",
+              "WhenOpened": "2026-06-08T20:05:52.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Wrapper111.Tests.csproj",
+              "DocumentMoniker": "D:\\build\\111\\111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj",
+              "RelativeDocumentMoniker": "111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj",
+              "ToolTip": "D:\\build\\111\\111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj",
+              "RelativeToolTip": "111\\tests\\Wrapper111.Tests\\Wrapper111.Tests.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-08T19:16:29.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MainWindowViewModel.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\MainWindowViewModel.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAABBwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T19:12:08.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\RelayCommand.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\RelayCommand.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\RelayCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T19:11:54.9Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Directory.Build.targets",
+              "DocumentMoniker": "D:\\build\\111\\Directory.Build.targets",
+              "RelativeDocumentMoniker": "Directory.Build.targets",
+              "ToolTip": "D:\\build\\111\\Directory.Build.targets",
+              "RelativeToolTip": "Directory.Build.targets",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-06-08T18:12:08.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Wrapper111.Gui.csproj",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\Wrapper111.Gui.csproj",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-06-08T17:32:15.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "README.txt",
+              "DocumentMoniker": "D:\\build\\111\\111\\README.txt",
+              "RelativeDocumentMoniker": "111\\README.txt",
+              "ToolTip": "D:\\build\\111\\111\\README.txt",
+              "RelativeToolTip": "111\\README.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAC4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-06-08T17:32:33.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MainWindowViewModelTests.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs",
+              "RelativeDocumentMoniker": "111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs",
+              "ToolTip": "D:\\build\\111\\111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs",
+              "RelativeToolTip": "111\\tests\\Wrapper111.Tests\\MainWindowViewModelTests.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAABBwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T19:16:37.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DriverClient.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\DriverClient.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\DriverClient.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\DriverClient.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\DriverClient.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAIBJwLoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T18:22:19.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Logger.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\Logger.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Logger.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\Logger.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAABBwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T18:25:55.643Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SettingsManager.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\SettingsManager.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\SettingsManager.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\SettingsManager.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\SettingsManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T18:41:52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Directory.Build.props",
+              "DocumentMoniker": "D:\\build\\111\\Directory.Build.props",
+              "RelativeDocumentMoniker": "Directory.Build.props",
+              "ToolTip": "D:\\build\\111\\Directory.Build.props",
+              "RelativeToolTip": "Directory.Build.props",
+              "ViewState": "AgIAAAwAAAAAAAAAAABBwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-06-08T18:11:19.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IDriverClient.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\IDriverClient.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\IDriverClient.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\IDriverClient.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\IDriverClient.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAIBJwA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T18:45:54.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.resx",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\Resources.resx",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.resx",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\Resources.resx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-06-08T18:51:27.278Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Resources.ru-RU.resx",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\Resources.ru-RU.resx",
+              "ViewState": "AgIAABYAAAAAAAAAAABBwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-06-08T18:51:33.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ResourcesHelper.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\ResourcesHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T18:51:40.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\App.xaml",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-08T17:32:17.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\App.xaml.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\App.xaml.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T17:32:19.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\MainWindow.xaml",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\MainWindow.xaml",
+              "ViewState": "AgIAAAsAAAAAAAAAAABBwA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-08T17:32:23.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs",
+              "ToolTip": "D:\\build\\111\\111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs",
+              "RelativeToolTip": "111\\gui\\Wrapper111.Gui\\MainWindow.xaml.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAIBJwI8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-08T17:32:30.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "111.cpp",
+              "DocumentMoniker": "D:\\build\\111\\111\\driver\\111.cpp",
+              "RelativeDocumentMoniker": "111\\driver\\111.cpp",
+              "ToolTip": "D:\\build\\111\\111\\driver\\111.cpp",
+              "RelativeToolTip": "111\\driver\\111.cpp",
+              "ViewState": "AgIAAIEAAAAAAAAAAABBwIwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-06-08T17:32:06.96Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

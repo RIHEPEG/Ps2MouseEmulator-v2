@@ -1,0 +1,119 @@
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using Microsoft.Win32.SafeHandles;
+using System.ComponentModel;
+
+namespace Wrapper111.Gui
+{
+    public partial class MainWindow : Window
+    {
+        IDriverClient _client;
+
+        public MainWindow() : this(new DriverClient())
+        {
+            InitializeComponent();
+            // Load saved setting
+            try
+            {
+                WatermarkCheck.IsChecked = SettingsManager.LoadWatermarkEnabled();
+            }
+            catch { }
+        }
+
+        // Для тестирования можно передать мок-реализацию
+        public MainWindow(IDriverClient client)
+        {
+            _client = client;
+            InitializeComponent();
+            // Load saved setting
+            try
+            {
+                WatermarkCheck.IsChecked = SettingsManager.LoadWatermarkEnabled();
+            }
+            catch { }
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            try
+            {
+                SettingsManager.SaveWatermarkEnabled(WatermarkCheck.IsChecked == true);
+            }
+            catch { }
+        }
+
+        private async void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            bool enable = WatermarkCheck.IsChecked == true;
+            ApplyBtn.IsEnabled = false;
+            try
+            {
+                var res = await Task.Run(() =>
+                {
+                    bool ok = _client.TrySetWatermark(enable, out int errCode, out string errMessage);
+                    return (ok, errCode, errMessage);
+                });
+
+                if (res.ok)
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = "Applied");
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = $"Failed to apply: {res.errMessage} (0x{res.errCode:X})");
+                }
+            }
+            finally
+            {
+                ApplyBtn.IsEnabled = true;
+            }
+        }
+
+        private void GenLogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Emulate creating log in game folder
+            string gameDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // placeholder
+            string fileName = $"log_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
+            string path = Path.Combine(gameDir, fileName);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Game: TestGame v1.0");
+            sb.AppendLine("Device: Test USB Mouse");
+            sb.AppendLine("Error: Watermark not found");
+            sb.AppendLine("Driver: Wrapper111 v0.1");
+            File.WriteAllText(path, sb.ToString());
+            StatusText.Text = "Log generated: " + path;
+        }
+
+        private async void GetStatusBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GetStatusBtn.IsEnabled = false;
+            try
+            {
+                var res = await Task.Run(() =>
+                {
+                    bool ok = _client.TryGetStatus(out string status, out int errCode, out string errMessage);
+                    return (ok, status, errCode, errMessage);
+                });
+
+                if (res.ok)
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = "Driver status: " + (res.status ?? "(empty)"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => StatusText.Text = $"Failed to get status: {res.errMessage} (0x{res.errCode:X})");
+                }
+            }
+            finally
+            {
+                GetStatusBtn.IsEnabled = true;
+            }
+        }
+    }
+}

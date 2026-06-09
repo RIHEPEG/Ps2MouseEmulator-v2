@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <XesUwpNativeOverrideTargets>$(MSBuildThisFileDirectory)Override.$(MSBuildToolsVersion).targets</XesUwpNativeOverrideTargets>
+    <!-- add refs from this package -->
+    <SDKReferenceDirectoryRoot>$(UwpSDKOverRide);$(TargetPlatformSdkRootOverride);$(SDKReferenceDirectoryRoot)</SDKReferenceDirectoryRoot>
+    <SDKExtensionDirectoryRoot>$(UwpSDKOverRide)\Windows Kits\10;$(TargetPlatformSdkRootOverride);$(SDKExtensionDirectoryRoot)</SDKExtensionDirectoryRoot>
+  </PropertyGroup>
+
+  <Target Condition="'$(XeWin10TargetVersion)' != '' and '$(TargetPlatformVersion)' != '' and '$(XeWin10TargetVersion)' != '$(TargetPlatformVersion)'"
+          Name="XesUwpCheckVersion"
+          BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
+    <Error Text="Version of Uwp Package $(XeWin10TargetVersion) does not match TargetPlatformVersion $(TargetPlatformVersion). Please modify the project file to make the setting of TargetPlatformVersion conditional on it not already being set." />
+  </Target>
+
+  <Target Condition="'$(MSBuildToolsVersion)' &lt; '15.0'"
+          Name="XesDisplayToolsVersion"
+          BeforeTargets="_CheckForInvalidConfigurationAndPlatform">
+    <Warning Text="MSBuild Tools Version must be 15.0 or greater to support NuGet UWP packages." />
+  </Target>
+
+  <Import Condition="Exists('$(XesUwpNativeOverrideTargets)')"
+          Project="$(XesUwpNativeOverrideTargets)" />
+
+</Project>

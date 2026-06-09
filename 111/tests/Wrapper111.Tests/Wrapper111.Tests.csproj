@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFramework>net48</TargetFramework>
+	<IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+	<PackageReference Include="MSTest.TestAdapter" Version="3.0.2" />
+	<PackageReference Include="MSTest.TestFramework" Version="3.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+	<ProjectReference Include="..\..\gui\Wrapper111.Gui\Wrapper111.Gui.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+﻿/* Minimal stub float.h to satisfy builds when UCRT include paths are not available.
+   This file is intentionally minimal and only used as a fallback during bootstrap builds.
+   Do NOT modify system headers; prefer to fix include paths in the build environment.
+*/
+#ifndef _FALLBACK_FLOAT_H
+#define _FALLBACK_FLOAT_H
+
+#define FLT_RADIX 2
+#define FLT_ROUNDS 1
+
+#endif // _FALLBACK_FLOAT_H

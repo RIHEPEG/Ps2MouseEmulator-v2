@@ -1,0 +1,9 @@
+﻿<Project>
+  <!-- Override проекта 111 после его импорта: заменяем Toolset и тип конфигурации,
+	   чтобы обойти требование Spectre libs при локальной сборке без WDK.
+	   Лучше установить нужные компоненты VS Installer; это — временный обход. -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == '111'">
+	<PlatformToolset>v143</PlatformToolset>
+	<ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+</Project>

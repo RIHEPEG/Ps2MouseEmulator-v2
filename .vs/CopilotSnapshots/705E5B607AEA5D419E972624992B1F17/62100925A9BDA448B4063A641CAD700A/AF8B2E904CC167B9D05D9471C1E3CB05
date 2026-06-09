@@ -1,0 +1,8 @@
+﻿namespace Wrapper111.Gui
+{
+    public interface IDriverClient
+    {
+        bool TrySetWatermark(bool enable, out int win32Error, out string errorMessage);
+        bool TryGetStatus(out string status, out int win32Error, out string errorMessage);
+    }
+}
